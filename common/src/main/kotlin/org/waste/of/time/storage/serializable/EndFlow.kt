@@ -39,7 +39,7 @@ class EndFlow : Storeable() {
             ).copy().styled {
                 it.withClickEvent(
                     ClickEvent(
-                        ClickEvent.Action.OPEN_FILE,
+                        { ClickEvent.Action.OPEN_FILE },
                         session.getDirectory(WorldSavePath.ROOT).toFile().path
                     )
                 )

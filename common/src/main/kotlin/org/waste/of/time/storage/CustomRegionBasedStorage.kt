@@ -6,7 +6,7 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtIo
 import net.minecraft.registry.Registries
 import net.minecraft.util.Identifier
-import net.minecraft.util.PathUtil
+import net.minecraft.util.path.PathUtil
 import net.minecraft.util.ThrowableDeliverer
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.ChunkPos
@@ -68,7 +68,7 @@ open class CustomRegionBasedStorage internal constructor(
 
     fun getBlockEntities(chunkPos: ChunkPos): List<BlockEntity> =
         getNbtAt(chunkPos)
-            ?.getList("block_entities", 10)
+            ?.getList("block_entities")
             ?.filterIsInstance<NbtCompound>()
             ?.mapNotNull { compoundTag ->
                 val blockPos = BlockPos(compoundTag.getInt("x"), compoundTag.getInt("y"), compoundTag.getInt("z"))
