@@ -69,10 +69,11 @@ open class CustomRegionBasedStorage internal constructor(
     fun getBlockEntities(chunkPos: ChunkPos): List<BlockEntity> =
         getNbtAt(chunkPos)
             ?.getList("block_entities")
+            ?.get()
             ?.filterIsInstance<NbtCompound>()
             ?.mapNotNull { compoundTag ->
-                val blockPos = BlockPos(compoundTag.getInt("x"), compoundTag.getInt("y"), compoundTag.getInt("z"))
-                val blockStateIdentifier = Identifier.of(compoundTag.getString("id"))
+                val blockPos = BlockPos(compoundTag.getInt("x").get(), compoundTag.getInt("y").get(), compoundTag.getInt("z").get())
+                val blockStateIdentifier = Identifier.of(compoundTag.getString("id").get())
                 val world = mc.world ?: return@mapNotNull null
 
                 runCatching {
