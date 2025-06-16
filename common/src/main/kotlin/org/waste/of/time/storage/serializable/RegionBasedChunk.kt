@@ -250,7 +250,7 @@ open class RegionBasedChunk(
             chunk.heightmaps.filter {
                 chunk.status.heightmapTypes.contains(it.key)
             }.forEach { (key, value) ->
-                put(key.getName(), NbtLongArray(value.asLongArray()))
+                put(key.getId(), NbtLongArray(value.asLongArray()))
             }
         })
     }
